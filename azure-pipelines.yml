@@ -13,3 +13,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+     - task: Docker@2
+       inputs:
+        containerRegistry: 'kdac-test'
+        repository: 'kdacacr'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
