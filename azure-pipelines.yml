@@ -1,6 +1,8 @@
 #this pipeline will be trigger to run by master branch of github repo. 
 trigger:
  - master
+pool:
+ vmImage: ubuntu-latest
 #add variables
 variables:
   tag: '$(Build.BuildId)'
