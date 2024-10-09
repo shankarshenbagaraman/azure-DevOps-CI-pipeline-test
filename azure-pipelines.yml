@@ -2,7 +2,9 @@
 trigger:
  - master
 pool:
- kdacpool
+  name: kdacpool
+  demands:
+   - agent.name -equals opensource11
 #add variables
 variables:
   tag: '$(Build.BuildId)'
