@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-rest-hello-world-svc
+  namespace: mynamespace
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-rest-hello-world
+  ports:
+    - protocol: "TCP"
+      port: 8000
+      targetPort: 5000
+
+
