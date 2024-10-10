@@ -18,7 +18,23 @@ spec:
     spec:
       containers:
         - name: flask-rest-hello-world
-          image: kdacacr.azurecr.io/flask-rest-hello-world:latest
+          image: kdacacr.azurecr.io/kdacacr:90
           ports:
-            - containerPort: 5000
+             - containerPort: 5000
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-rest-hello-world-svc
+  namespace: mynamespace
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-rest-hello-world
+  ports:
+    - protocol: "TCP"
+      port: 8000
+      targetPort: 5000
 
