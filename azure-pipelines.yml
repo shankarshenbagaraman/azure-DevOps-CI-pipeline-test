@@ -8,7 +8,7 @@ pool:
    - agent.name -equals opensource11
 #add variables
 variables:
-  tag: '$(Build.BuildId)'
+  tag: 1
 stages:
 - stage: Build
   displayName: Build Stage
