@@ -1,0 +1,29 @@
+#this pipeline will be trigger to run by master branch of github repo. 
+
+trigger:
+ - master
+pool:
+  name: kdacpool
+  demands:
+   - agent.name -equals opensource11
+#add variables
+variables:
+  tag: 1
+stages:
+- stage: Build
+  displayName: Build Stage
+  jobs:
+  - job: Build
+    displayName: Build Job
+    steps:
+     - task: Docker@2
+       inputs:
+        containerRegistry: 'kdac-test'
+        repository: 'kdacacr'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+     - task: PublishBuildArtifacts@1
+       inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
