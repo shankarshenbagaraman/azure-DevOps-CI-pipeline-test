@@ -22,6 +22,11 @@ stages:
         repository: 'kdacacr'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+     - task: CopyFiles@2
+       inputs:
+         sourceFolder: '$(Build.SourcesDirectory)'
+         contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+         targetFolder: '$(Build.ArtifactStagingDirectory)'
      - task: PublishBuildArtifacts@1
        inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
